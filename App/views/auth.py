@@ -71,6 +71,25 @@ def signup_staff_action():
     db.session.commit()
     return redirect('/staffHome')
 
+@auth_views.route('/signupadmin', methods=['POST'])
+def signup_admin_action():
+    data = request.form
+    firstname = data['firstname']
+    lastname = data['lastname']
+    teachingExperience = "none"
+    email = data['email']
+    password = data['password']
+    id= 1
+    existing_user = Admin.query.filter((Staff.email == email)).first()
+
+    if existing_user:
+        return jsonify({"error":"email already taken"}), 409
+
+    new_user = Admin.addStaff(id=id, firstname=firstname, lastname=lastname, email=email,teachingExperience= teachingExperience, password=password)
+
+    db.session.add(new_user)
+    db.session.commit()
+    return redirect('/adminHome')
 
 @auth_views.route('/logout', methods=['GET'])
 def logout_action():
