@@ -32,7 +32,7 @@ def login_action():
     if existing_user:
         return redirect('/staffHome')  
     else:
-        return redirect('/')
+        return 'wrong email or password given', 401
     user = login(data['email'], data['password'])
     if user:
         session['logged_in'] = True
