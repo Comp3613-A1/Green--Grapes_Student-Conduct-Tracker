@@ -152,6 +152,7 @@ button{
     margin-top: 20px;
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
 }
 
@@ -344,7 +345,7 @@ button{
 }
 
 .textarea-format{
-    margin-left: 75px;
+    margin-left: 170px;
     justify-content: left;
 }
 
@@ -356,7 +357,7 @@ textarea{
 
 #text{
     justify-content: center;
-    width: 775px;
+    width: 600px;
     height:150px;
     margin-bottom: 25px;
     font-size: 1em;
