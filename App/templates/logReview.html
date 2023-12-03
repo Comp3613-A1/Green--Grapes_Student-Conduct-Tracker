@@ -18,40 +18,40 @@
   
     <div class="generic-form-box" style="margin-top: -15px;" >
         <div class="form-value">
-            <form action="" id = "log-student">
+            <form method="GET" action="/logReview" id = "log-student">
                 <div class = "student-info">
                     <div>
                         <h2>Log Review</h2>
                     </div>
                     
-                    <form action="GET">
-                    <div class="inputbox">
+                    <!--<form action="GET" action="/searchStudent">
+                --><div class="inputbox">
                         <ion-icon name="search-outline"></ion-icon>
                         <input type="text">
                         <label for="">Search for Student</label>
                     </div>
-                </form>
+                <!--</form>-->
                 </div>
                 
                 <div class="" style = "margin-top: 20px;">
                     <main class="container" >
-                        <form  method="POST" action="/searchStudent" style="margin-top:40px;justify-content: center;align-items: center;display: flex">
-                           <table>
+                    <!--<form  method="POST" action="/reviewStudents" style="margin-top:40px;justify-content: center;align-items: center;display: flex">
+                    --->   <table>
                              <thead>
                                <th>Student ID</th><th>First Name</th><th>Last Name</th><th>Description</th>
                              </thead>
                              <tbody>
                                {% for student in students %}
                                <tr>
-                                 <td>{{student.ID}}</td>
+                                 <td>{{student.studentID}}</td>
                                  <td>{{student.firstname}}</td>
                                  <td>{{student.lastname}}</td>
-                                 <td>{{student.yearOfStudy}}</td>
+                                 <td>{{student.reviews}}</td>
                                {% endfor %}
                                </tr>
                              </tbody>
                            </table>
-                         </form>
+                         
                       </main>
 
                 </div>
