@@ -51,6 +51,23 @@ def login_action():
     #email = data.get('email')
     #return 'bad username or password given', 401
 
+@auth_views.route('/adminlogin', methods=['POST'])
+def adminlogin_action():
+    data = request.form
+    #staffuser = login(data['email'], data['password'])
+    email = data['email']
+    password = data['password']
+    existing_user = Admin.query.filter((Staff.email == email)).first()
+    if existing_user:
+        return redirect('/adminHome')  
+    else:
+        return 'wrong email or password given', 401
+    user = login(data['email'], data['password'])
+    if user:
+        session['logged_in'] = True
+        token = jwt_authenticate(data['email'], data['password'])
+        return redirect('/staffHome')
+
 @auth_views.route('/signupstaff', methods=['POST'])
 def signup_staff_action():
     data = request.form
