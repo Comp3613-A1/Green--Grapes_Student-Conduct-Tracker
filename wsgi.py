@@ -44,8 +44,7 @@ def initialize():
       )
       db.session.add(student)
       db.session.commit()
-
-  return jsonify({'message': 'Database initialized'}),201
+  print('database intialized')
 
 '''
 User Commands
