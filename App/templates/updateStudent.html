@@ -15,11 +15,11 @@
 
 {% block content %}
 <section>
-    <div class="generic-form-box" id = "add-student">
+    <div class="generic-form-box" id = "update-student">
       <div class="form-value" >
         <form action="">
           
-          <h2>Add Student</h2>
+          <h2>Update Student</h2>
 
           <div class="row">
             <label for="">Student ID</label>
@@ -42,11 +42,15 @@
           </div>
   
           <div class="row">
-            <label for="">Year of Study</label>
+            <label for="">Start of Study</label>
             <input type="date" required>
           </div>
 
-          <button>Save</button>
+          <div class ="button-format">
+            <button class = "update-button">Edit</button>
+            <button class = "update-button">Save</button>
+          </div>
+
           
         </form>
         
