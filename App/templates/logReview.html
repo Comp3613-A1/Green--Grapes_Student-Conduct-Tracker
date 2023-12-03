@@ -24,60 +24,56 @@
                         <h2>Log Review</h2>
                     </div>
                     
-                    <form action="GET">
-                    <div class="inputbox">
-                        <ion-icon name="search-outline"></ion-icon>
-                        <input type="text">
-                        <label for="">Search for Student</label>
-                    </div>
                 </form>
                 </div>
                 
                 <div class="" style = "margin-top: 20px;">
-                    <main class="container" >
-                        <form  method="POST" action="/searchStudent" style="margin-top:40px;justify-content: center;align-items: center;display: flex">
-                           <table>
-                             <thead>
-                               <th>Student ID</th><th>First Name</th><th>Last Name</th><th>Description</th>
-                             </thead>
-                             <tbody>
-                               {% for student in students %}
-                               <tr>
-                                 <td>{{student.ID}}</td>
-                                 <td>{{student.firstname}}</td>
-                                 <td>{{student.lastname}}</td>
-                                 <td>{{student.yearOfStudy}}</td>
-                               {% endfor %}
-                               </tr>
-                             </tbody>
-                           </table>
-                         </form>
-                      </main>
-
-                </div>
-
-                <div class="textarea-format">
-                    <div class="student-info">
-                        <div>
-                            <h4>Review Description: </h4>
+                    <form action="">
+              
+                        <div class="row">
+                          <label for="">Student ID</label>
+                          <input type="text" required>
                         </div>
-                        <div class="inputbox" style="width:auto">
-                            <input type = "date"></input>
+                
+                        <div class="row">
+                          <label for="">First Name</label>
+                          <input type="text" required>
+                        </div>
+              
+                        <div class="row">
+                          <label for="">Last Name</label>
+                          <input type="text" required>
+                        </div>
+
+                        <div class="row">
                             <label>Date Created: </label>
+                            <input type = "date"></input>
                         </div>
-                        <div class="inputbox" style="width:auto">
-                            <input type = "text"></input>
+
+                        <div class="row">
                             <label>Logged By: </label>
+                            <input type = "text"></input>
                         </div>
-                    </div>
-                    
-                    <div >
-                        <textarea name="review" id="text" ></textarea>
-                    </div>
+                        
+                    </form>
+
+                    <form>
+                        <div class="textarea-format">
+                            <div class="student-info">
+                                <div>
+                                    <h4>Review Description: </h4>
+                                </div>
+                                <div >
+                                    <textarea name="review" id="text" ></textarea>
+                                </div>
+                            </div>
+                            
+                        </div>
+                    </form>
+                   
                 </div>
 
                 <div class ="button-format" style="justify-content: right; margin-right: 90px; gap: 2em;">
-                    <button class = "update-button">Edit</button>
                     <button class = "update-button">Create Review</button>
                   </div>
 
