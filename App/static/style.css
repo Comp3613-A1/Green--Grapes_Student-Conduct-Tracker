@@ -156,6 +156,13 @@ button{
     justify-content: space-around;
 }
 
+.student-search-info{
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+}
+
 #student-information{
     position: relative;
 }
