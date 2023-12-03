@@ -1,40 +1,58 @@
 {% extends "layout.html" %}
 {% block title %}Student Conduct Tracker{% endblock %}
-{% block page %}Student Conduct Tracker{% endblock %}
+{% block page %}Search Student{% endblock %}
 
 {{ super() }}
 
+{% block link %}
+    <ul id = "nav-mobile" class = "left">
+        <li><a href = "/staffHome">Back</a></li>
+    </ul>
+{% endblock %}
+
 {% block content %}
 <section>
-    <div class="search-form-box">
-        
-        <div class="staffHome-form-value">
-            
-            <div class="inputbox">
-                <ion-icon name="search-outline"></ion-icon>
-                <input type="text" required>
-                <label for="">Search Student</label>
-            </div>
-
-            <main class="container" style="margin-top:40px;justify-content: center;align-items: center;display: flex">
-                <table>
-                    <thead>
-                      <th>Student ID</th><th>First Name</th><th>Last Name</th><th>Review</th>
-                    </thead>
-                    <tbody>
-                      {% for student in students %}
-                      <tr>
-                        <td>{{student.ID}}</td>
-                        <td>{{student.firstname}}</td>
-                        <td>{{student.lastname}}</td>
-                        <td>{{student.reviews}}</td>
-                      {% endfor %}
-                      </tr>
-                    </tbody>
-                  </table>
-            </main>
-            
+  
+    <div class="generic-form-box">
+      
+      <div class = "student-info">
+        <div class="inputbox" id = "search-student">
+          <ion-icon name="search-outline"></ion-icon>
+          <input type="text">
+          <label for="">Search for Student</label>
         </div>
+
+        <!--select and option tags refuse to render-->
+        <div class="inputdropbox">
+          <button>Filter By  <ion-icon name="caret-down-outline"></ion-icon></ion-icon></button>
+          <div class="drop-content"> 
+            <a href="">Student ID</a>
+            <a href="">Student Name</a>
+            <a href="">Best Review</a>
+            <a href="">Worst Review</a>
+          </div>
+        </div>
+
+      </div>
+            
+      <main class="container" style="margin-top:40px;justify-content: center;align-items: center;display: flex">
+          <table>
+              <thead>
+                <th>Student ID</th><th>First Name</th><th>Last Name</th><th>Review</th>
+              </thead>
+              <tbody>
+                {% for student in students %}
+                <tr>
+                  <td>{{student.ID}}</td>
+                  <td>{{student.firstname}}</td>
+                  <td>{{student.lastname}}</td>
+                  <td>{{student.reviews}}</td>
+                {% endfor %}
+                </tr>
+              </tbody>
+            </table>
+      </main>
+            
         
     </div>
     
