@@ -3,17 +3,17 @@ from App.database import db
 
 
 def create_student(admin,studentID, firstname, lastname, password, contact, studentType, yearofStudy):
-		new_student = admin.addStudent(studentID, firstname=firstname, lastname=lastname, password=password, contact=contact, studentType=studentType, yearofStudy=yearofStudy)
-		if new_student:
-			return new_student
-		return None
+        new_student = admin.addStudent(studentID, firstname=firstname, lastname=lastname, password=password, contact=contact, studentType=studentType, yearofStudy=yearofStudy)
+        if new_student:
+            return new_student
+        return None
 
 
-def create_staff(admin, firstname, lastname, password, staffID, email, teachingExperience):
-		new_staff = admin.addStaff(staffID, firstname=firstname, lastname=lastname, password=password, email=email, teachingExperience=teachingExperience)
-		if new_staff:
-			return new_staff
-		return None
+def create_staff(admin, firstname, lastname, password, staff_id, email, teachingExperience): 
+    new_staff = admin.addStaff(firstname, lastname, password, staff_id, email, teachingExperience)
+    if new_staff:
+        return new_staff
+    return None
 
 
 def create_user(firstname, lastname, password):
@@ -87,4 +87,3 @@ def update_student(student, firstname, lastname, password, contact, studentType,
     db.session.add(student)
     db.session.commit()
     return student
-    
