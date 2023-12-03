@@ -1,9 +1,9 @@
 from flask import Blueprint, jsonify, redirect, render_template, request, abort, url_for
 from flask_jwt_extended import jwt_required, current_user as jwt_current_user
 from flask_login import current_user
-from App.controllers import Review, Staff
-from App.controllers.user import get_staff
-from App.controllers.student import search_student
+from App.controllers import *
+#from App.controllers.user import get_staff
+#from App.controllers.student import search_student
 
 from App.controllers.review import (
     get_reviews_by_staff,
@@ -25,7 +25,24 @@ def list_reviews():
     reviews = get_reviews()
     return jsonify([review.to_json() for review in reviews]), 200
 
-#@review_views.route('/addreview', methods=['GET'])
+@review_views.route('/addreview', methods=['POST'])
+def addReview_action():
+    redirect('/')
+    data = request.form  
+    studentID = data['studentID']
+    firstname= data['firstname']
+    lastname= data['lastname']
+    review= data['review']
+    existing_student = Student.query.filter(Student.ID==studentID).first()
+    if existing_student:
+        existing_student.review = review
+        updated_student = get_reviews()
+        return jsonify({
+            'message': 'Student successfully updated!',
+            'student': updated_student
+        })
+    else:
+        return jsonify({'message': 'Student not found!'})
 
 
 # Route to view a specific review and vote on it

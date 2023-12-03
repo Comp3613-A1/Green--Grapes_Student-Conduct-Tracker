@@ -18,22 +18,22 @@
   
     <div class="generic-form-box" style="margin-top: -15px;" >
         <div class="form-value">
-            <form method="GET" action="/logReview" id = "log-student">
+            <form method="POST" action="/addreview" id = "log-student">
                 <div class = "student-info">
                     <div>
                         <h2>Log Review</h2>
                     </div>
                  
                 
-                        <div class="row">
-                          <label for="">First Name</label>
-                          <input type="text" required>
-                        </div>
-              
-                        <div class="row">
-                          <label for="">Last Name</label>
-                          <input type="text" required>
-                        </div>
+                     <div class="row">
+                        <label for="firstname">First Name</label>
+                        <input name="firstname" type="text" required>
+                      </div>
+            
+                      <div class="row">
+                        <label for="lastname">Last Name</label>
+                        <input name="lastname" type="text" required>
+                      </div>
 
                         <div class="row">
                             <label>Date Created: </label>
