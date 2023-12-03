@@ -233,3 +233,65 @@ button{
     font-size: 1em;
     width: 150px;
 }
+
+#search-student{
+    width: 650px;
+}
+
+.select-container{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    min-width: 250px;
+    height: 50px;
+}
+
+.select-box{
+    border: none;
+    padding: 0 30px 0 15px;
+    width: 100%;
+    color: green;
+    background-color: #2873ff;
+    font-size: 20px;
+}
+
+.inputdropbox{
+    display:inline-block;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputdropbox button{
+    background-color:green;
+    color: #fff;
+    padding: 10px 26px;
+    border: 2px;
+    cursor: pointer;
+}
+
+.inputdropbox a{
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+.inputdropbox .drop-content{
+    display: none;
+    position:absolute;
+    background-color: hsl(0, 0%, 95%);
+    min-width: 100px;
+    box-shadow: 2px 2px 5px hsl(0,0%,0%,0.8);
+}
+
+.inputdropbox:hover .drop-content{
+    display: block;
+}
+
+.inputdropbox:hover button{
+    background-color: hsl(0, 0%, 70%);
+}
+
+.inputdropbox a:hover{
+    background-color: hsl(0, 0%, 90%);
+}
