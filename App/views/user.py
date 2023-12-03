@@ -46,8 +46,30 @@ def addStudent_action():
         'students': students
     })
 
-
-
+@user_views.route('/studentUpdates', methods=['POST'])
+def update_Student_action():
+  data = request.form  
+  studentID = data['studentID']
+  firstname= data['firstname']
+  lastname= data['lastname']
+  password = None
+  contact= data['contact']
+  studentType = None
+  yearOfStudy = data['yearOfStudy']
+  existing_student = Student.query.filter(Student.ID==studentID).first()
+  if existing_student:
+      existing_student.firstname = firstname
+      existing_student.lastname = lastname
+      existing_student.contact = contact
+      existing_student.yearOfStudy = yearOfStudy
+      updated_student = get_all_students_json()
+      return jsonify({
+          'message': 'Student successfully updated!',
+          'student': updated_student
+      })
+  else:
+      return jsonify({'message': 'Student not found!'})  
+  return redirect('/searchStudent')
 
 
 @user_views.route('/user/create_student', methods=['POST'])
