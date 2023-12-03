@@ -16,12 +16,13 @@
     <div class="generic-form-box">
       
       <div class = "student-info">
+        <form  method="GET" action="/searchStudent/search/<string:search_term>" >
         <div class="inputbox" id = "search-student">
           <ion-icon name="search-outline"></ion-icon>
           <input type="text">
           <label for="">Search for Student</label>
         </div>
-
+        </form>
 
         <!--select and option tags refuse to render-->
         <div class="inputdropbox">
@@ -36,6 +37,7 @@
          <main class="container" >
            <form  method="POST" action="/searchStudent" style="margin-top:40px;justify-content: center;align-items: center;display: flex">
             <table>
+              
               <thead>
                 <th>Student ID</th><th>First Name</th><th>Last Name</th><th>Review</th>
               </thead>

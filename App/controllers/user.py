@@ -2,14 +2,14 @@ from App.models import Staff, Student, Admin
 from App.database import db
 
 
-def create_student(admin,studentID, firstname, lastname, password, contact, studentType, yearofStudy):
-		new_student = admin.addStudent(studentID, firstname=firstname, lastname=lastname, password=password, contact=contact, studentType=studentType, yearofStudy=yearofStudy)
+def create_student(admin,studentID, firstname, lastname,password, contact, studentType, yearofStudy):
+		new_student = Admin.addStudent(admin, studentID, firstname=firstname, lastname=lastname, password=password, contact=contact, studentType=studentType, yearofStudy=yearofStudy)
 		if new_student:
 			return new_student
 		return None
 
 
-def create_staff(admin, firstname, lastname, password, staffID, email, teachingExperience):
+def create_staff(admin,staffID, firstname, lastname, password, email, teachingExperience):
 		new_staff = Admin.addStaff(staffID, firstname=firstname, lastname=lastname, password=password, email=email, teachingExperience=teachingExperience)
 		if new_staff:
 			return new_staff
