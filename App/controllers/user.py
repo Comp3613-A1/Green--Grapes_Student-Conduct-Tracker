@@ -10,7 +10,7 @@ def create_student(admin,studentID, firstname, lastname, password, contact, stud
 
 
 def create_staff(admin, firstname, lastname, password, staffID, email, teachingExperience):
-		new_staff = admin.addStaff(staffID, firstname=firstname, lastname=lastname, password=password, email=email, teachingExperience=teachingExperience)
+		new_staff = Admin.addStaff(staffID, firstname=firstname, lastname=lastname, password=password, email=email, teachingExperience=teachingExperience)
 		if new_staff:
 			return new_staff
 		return None

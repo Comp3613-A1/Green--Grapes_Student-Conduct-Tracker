@@ -1,8 +1,10 @@
 from flask import Blueprint, render_template, jsonify, request, send_from_directory, flash, redirect, url_for, session
 from flask_jwt_extended import jwt_required, current_user as jwt_current_user
 from flask_login import login_required, login_user, current_user, logout_user
+from App.models import staff, User, Admin
 from datetime import datetime, timedelta
-
+from App.models.staff import Staff
+from App.database import db
 from.index import index_views
 
 from App.controllers import (
@@ -22,14 +24,72 @@ def identify_page():
 
 @auth_views.route('/login', methods=['POST'])
 def login_action():
-    data = request.json
-    user = login(data['ID'], data['password'])
+    data = request.form
+    #staffuser = login(data['email'], data['password'])
+    email = data['email']
+    password = data['password']
+    existing_user = Admin.query.filter((Staff.email == email)).first()
+    if existing_user:
+        return redirect('/staffHome')  
+    else:
+        return 'wrong email or password given', 401
+    user = login(data['email'], data['password'])
     if user:
         session['logged_in'] = True
-        token = jwt_authenticate(data['ID'], data['password'])
-        return 'user logged in!'
-    return 'bad username or password given', 401
+        token = jwt_authenticate(data['email'], data['password'])
+        return redirect('/staffHome')
+    #existing_staffuser = staff.query.filter((staff.email == data['email']) & (staff.password == data['password'] )).first()
+    #if existing_staffuser:
+    '''email = data.get('email')
+    password = data.get('password')
+    staffuser = login(data['email'], data['password'])
+    existingstaffuser = staff.query.filter(email=email).first()
+    if existingstaffuser and staffuser.check_password(password):
+        return redirect('/staffHome')
+    else:
+        return redirect('/')'''
+    #email = data.get('email')
+    #return 'bad username or password given', 401
 
+@auth_views.route('/signupstaff', methods=['POST'])
+def signup_staff_action():
+    data = request.form
+    firstname = data['firstname']
+    lastname = data['lastname']
+    teachingExperience = data['teachingExperience']
+    email = data['email']
+    password = data['password']
+    id= 1
+    existing_user = Admin.query.filter((Staff.email == email)).first()
+
+    if existing_user:
+        return jsonify({"error":"email already taken"}), 409
+
+    new_user = Admin.addStaff(id=id, firstname=firstname, lastname=lastname, email=email,teachingExperience= teachingExperience, password=password)
+
+    db.session.add(new_user)
+    db.session.commit()
+    return redirect('/staffHome')
+
+@auth_views.route('/signupadmin', methods=['POST'])
+def signup_admin_action():
+    data = request.form
+    firstname = data['firstname']
+    lastname = data['lastname']
+    teachingExperience = "none"
+    email = data['email']
+    password = data['password']
+    id= 1
+    existing_user = Admin.query.filter((Staff.email == email)).first()
+
+    if existing_user:
+        return jsonify({"error":"email already taken"}), 409
+
+    new_user = Admin.addStaff(id=id, firstname=firstname, lastname=lastname, email=email,teachingExperience= teachingExperience, password=password)
+
+    db.session.add(new_user)
+    db.session.commit()
+    return redirect('/adminHome')
 
 @auth_views.route('/logout', methods=['GET'])
 def logout_action():
