@@ -152,14 +152,14 @@ button{
     margin-top: 20px;
     position: relative;
     display: flex;
-    flex-direction: column;
     justify-content: space-around;
 }
 
-.student-search-info{
+.student-log-info{
     margin-top: 20px;
     position: relative;
     display: flex;
+    flex-direction: column;
     justify-content: space-around;
 }
 
