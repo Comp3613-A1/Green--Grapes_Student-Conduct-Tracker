@@ -368,8 +368,8 @@ textarea{
 
 .log-form-box{
     position: relative;
-    width: 400px;
-    height: 200px;
+    padding-left: 40px;
+    padding-right: 40px;
     background: #fff;
     border: 3px solid green;
     border-radius: 20px;
