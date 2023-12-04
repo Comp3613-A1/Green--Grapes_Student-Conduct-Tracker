@@ -79,7 +79,7 @@ def signup_staff_action():
     email = data['email']
     password = data['password']
     staffID= data['id']
-    existing_user = Admin.query.filter((Staff.email == email)).first()
+    existing_user = Admin.query.filter((email == email)).first()
 
     if existing_user:
         return jsonify({"error":"email already taken"}), 409
@@ -99,7 +99,7 @@ def signup_admin_action():
     email = data['email']
     password = data['password']
     staffID=data['id']
-    existing_user = Admin.query.filter((Staff.email == email)).first()
+    existing_user = Admin.query.filter((email == email)).first()
 
     if existing_user:
         return jsonify({"error":"email already taken"}), 409
