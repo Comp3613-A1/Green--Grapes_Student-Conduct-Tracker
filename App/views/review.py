@@ -43,7 +43,7 @@ def addReview_action():
         #db.session.commit()
     #if new_review:
         allreviews=get_all_reviews_json()
-        allreviews.append(new_review.to_json())
+        #allreviews.append(new_review.to_json())
         return jsonify({
             'message': 'Review added for the student!',
             'text': allreviews,
