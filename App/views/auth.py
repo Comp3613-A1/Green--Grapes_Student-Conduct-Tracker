@@ -98,13 +98,13 @@ def signup_admin_action():
     teachingExperience = data['lastname']
     email = data['email']
     password = data['password']
-    id=data['id']
+    staffID=data['id']
     existing_user = Admin.query.filter((Staff.email == email)).first()
 
     if existing_user:
         return jsonify({"error":"email already taken"}), 409
 
-    new_user = Admin.addStaff(id=id, firstname=firstname, lastname=lastname, email=email,teachingExperience= teachingExperience, password=password)
+    new_user = Admin.addStaff(id=staffID, firstname=firstname, lastname=lastname, email=email,teachingExperience= teachingExperience, password=password)
 
     db.session.add(new_user)
     db.session.commit()

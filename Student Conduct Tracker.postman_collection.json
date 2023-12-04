@@ -127,7 +127,7 @@
 								"url": "student-conduct-tracker-api.onrender.com/init"
 							},
 							"status": "Created",
-							"code": 201,
+							"code": 200,
 							"_postman_previewlanguage": "json",
 							"header": [
 								{
