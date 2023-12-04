@@ -78,7 +78,7 @@ def signup_staff_action():
     teachingExperience = data['teachingExperience']
     email = data['email']
     password = data['password']
-    staffID= 1
+    staffID= data['id']
     existing_user = Admin.query.filter((Staff.email == email)).first()
 
     if existing_user:

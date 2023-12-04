@@ -14,6 +14,12 @@ def get_student_page():
     students = get_all_students()
     return render_template('searchStudent.html', students=students)
 
+@user_views.route('/karmaRanking', methods=['GET'])
+def students_karma():
+    #rankings = get_student_rankings(Staff)
+    students = get_all_students()
+    return render_template('karmaRanking.html', students=students)#rankings)
+
 # Route to get all users
 @user_views.route('/api/users', methods=['GET'])
 def get_users_action():
@@ -127,13 +133,13 @@ def create_staff_action():
 
 
 # Route to get a student by ID
-@user_views.route("/searchStudent/<string:id>", methods=["GET"])
+'''@user_views.route("/searchStudent/<string:id>", methods=['GET'])
 def get_student_action(id):
     student = get_student(str(id))
     if student:
         return jsonify(student.to_json()), 200
     else:
-        return "Student not found", 404
+        return "Student not found", 404'''
 
 
 # Route to get all students

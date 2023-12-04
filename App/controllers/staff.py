@@ -5,7 +5,6 @@ from App.database import db
 def create_review(staffID, studentID, is_positive, comment):
     staff = get_staff(staffID)
     student = db.session.query(Student).get(studentID)
-    
     if staff and student:
         review = staff.createReview(student,is_positive, comment)
         return review
@@ -16,8 +15,8 @@ def get_staff_reviews(staff_id):
     if staff:
         return staff.getReviewsByStaff(staff)
 
-def search_students_searchTerm(staff, searchTerm):
-    students = staff.searchStudent(searchTerm)
+def search_students_searchTerm(searchTerm):
+    students = Staff.searchStudent(searchTerm)
     if students:
       return students
     return None
