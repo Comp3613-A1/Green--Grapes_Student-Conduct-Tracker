@@ -79,10 +79,10 @@ def signup_staff_action():
     email = data['email']
     password = data['password']
     staffID= data['id']
-    existing_user = Admin.query.filter((email == email)).first()
+    existing_user = Admin.query.filter((Admin.ID == staffID)).first()
 
     if existing_user:
-        return jsonify({"error":"email already taken"}), 409
+        return jsonify({"error":"Admin already exists"}), 409
 
     new_user = user.create_staff(Admin, staffID=staffID, firstname=firstname, lastname=lastname, email=email,teachingExperience= teachingExperience, password=password)
 
@@ -99,10 +99,10 @@ def signup_admin_action():
     email = data['email']
     password = data['password']
     staffID=data['id']
-    existing_user = Admin.query.filter((email == email)).first()
+    existing_user = Admin.query.filter((Admin.ID == staffID)).first()
 
     if existing_user:
-        return jsonify({"error":"email already taken"}), 409
+        return jsonify({"error":"Admin already exists"}), 409
 
     new_user = Admin.addStaff(id=staffID, firstname=firstname, lastname=lastname, email=email,teachingExperience= teachingExperience, password=password)
 
