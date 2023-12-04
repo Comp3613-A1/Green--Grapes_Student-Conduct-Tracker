@@ -369,3 +369,22 @@ textarea{
     margin-bottom: 25px;
     font-size: 1em;
 }
+
+.home-page{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+}
+
+.log-form-box{
+    position: relative;
+    width: 400px;
+    height: 200px;
+    background: #fff;
+    border: 3px solid green;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
