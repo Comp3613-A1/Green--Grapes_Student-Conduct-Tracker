@@ -39,6 +39,11 @@ h3{
     text-align: center;
 }
 
+h4{
+    font-size: 2em;
+    color: green;
+}
+
 .inputbox{
     position: relative;
     margin: 30px 0;
@@ -150,6 +155,14 @@ button{
     justify-content: space-around;
 }
 
+.student-log-info{
+    margin-top: 20px;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+}
+
 #student-information{
     position: relative;
 }
@@ -223,7 +236,7 @@ button{
 
 #add-student{
     width: 600px;
-    height: 550px;
+    height: 600px;
     justify-content: center;
     align-items: center;
 }
@@ -232,4 +245,146 @@ button{
     color: green;
     font-size: 1em;
     width: 150px;
+}
+
+#search-student{
+    width: 650px;
+}
+
+.select-container{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    min-width: 250px;
+    height: 50px;
+}
+
+.select-box{
+    border: none;
+    padding: 0 30px 0 15px;
+    width: 100%;
+    color: green;
+    background-color: #2873ff;
+    font-size: 20px;
+}
+
+.inputdropbox{
+    display:inline-block;
+    justify-content: center;
+    align-items: center;
+}
+
+.inputdropbox button{
+    background-color:green;
+    color: #fff;
+    padding: 10px 26px;
+    border: 2px;
+    cursor: pointer;
+}
+
+.inputdropbox a{
+    display: block;
+    color: black;
+    text-decoration: none;
+    padding: 10px 15px;
+}
+
+.inputdropbox .drop-content{
+    display: none;
+    position:absolute;
+    background-color: hsl(0, 0%, 95%);
+    min-width: 100px;
+    box-shadow: 2px 2px 5px hsl(0,0%,0%,0.8);
+}
+
+.inputdropbox:hover .drop-content{
+    display: block;
+}
+
+.inputdropbox:hover button{
+    background-color: hsl(0, 0%, 70%);
+}
+
+.inputdropbox a:hover{
+    background-color: hsl(0, 0%, 90%);
+}
+
+#update-student{
+    width: 600px;
+}
+
+.button-format{
+    display:flex;
+    flex-direction: row;
+    position: relative;
+    justify-content: space-around;
+
+}
+
+.update-button{
+    width: 30%;
+    height: 40px;
+    border-radius: 10px;
+    background: green;
+    border: none;
+    outline: none;
+    cursor: pointer;
+    font-size: 1em;
+    font-weight: 600;
+    color: #fff;
+    margin-bottom: 30px;
+}
+
+.log-form-box{
+    position: relative;
+    width: 400px;
+    height: 450px;
+    background: #fff;
+    border: 3px solid green;
+    border-radius: 20px;
+    display: flex;
+}
+
+.log-student{
+    margin-top: 40px;
+    justify-content: center;
+    align-items: center;
+}
+
+.textarea-format{
+    margin-left: 170px;
+    justify-content: left;
+}
+
+textarea{
+    justify-content: center;
+    border: 3px solid green;
+    border-radius: 20px; 
+}
+
+#text{
+    justify-content: center;
+    width: 600px;
+    height:150px;
+    margin-bottom: 25px;
+    font-size: 1em;
+}
+
+.home-page{
+    position: relative;
+    display: flex;
+    justify-content: space-around;
+}
+
+.log-form-box{
+    position: relative;
+    width: 400px;
+    height: 200px;
+    background: #fff;
+    border: 3px solid green;
+    border-radius: 20px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
 }

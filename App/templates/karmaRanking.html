@@ -14,15 +14,20 @@
 <section>
   
     <div class="generic-form-box">
-      <h2>Search Student</h2>
+      
+      <div>
+        <h2>Student Karma Ranks</h2>
+      </div>
+
       <div class = "student-info">
-        <form  method="GET" action="/searchStudent/search" >
-          <div class="inputbox" id = "search-student">
-            <ion-icon name="search-outline"></ion-icon>
-            <input name= "entered"type="text">
-            <label for="entered">Search for Student by First Name, Last Name or ID</label>
-          </div>
-        </form>
+        
+        <div class="inputbox" id = "search-student">
+          <form  method="GET" action="/karmaRanking/search" >
+          <ion-icon name="search-outline"></ion-icon>
+          <input name= "entered"type="text">
+          <label for="entered">Search for Student by First Name, Last Name or ID</label>
+          </form>
+        </div>
 
         <!--select and option tags refuse to render-->
         <div class="inputdropbox">
@@ -30,19 +35,18 @@
           <div class="drop-content"> 
             <a href="">Student ID</a>
             <a href="">Student Name</a>
-            <a href="">Best Review</a>
-            <a href="">Worst Review</a>
+            <a href="">Highest Score</a>
+            <a href="">Lowest Score</a>
           </div>
         </div>
 
       </div>
             
       <main class="container" >
-         <form  method="GET" action="/searchStudent" style="margin-top:20px;justify-content: center;align-items: center;display: flex">
+         <form  method="GET" action="/karmaRanking" style="margin-top:40px;justify-content: center;align-items: center;display: flex">
             <table>
-              
               <thead>
-                <th>Student ID</th><th>First Name</th><th>Last Name</th><th>Review</th>
+                <th>Student ID</th><th>First Name</th><th>Last Name</th><th>Karma Score</th>
               </thead>
               <tbody>
                 {% for student in students %}
@@ -50,9 +54,7 @@
                   <td>{{student.ID}}</td>
                   <td>{{student.firstname}}</td>
                   <td>{{student.lastname}}</td>
-                  <td><button>
-                    <form method="GET" action="/reviews">
-                    <a href="/studentInformation" style="color:#fff">Reviews</a></form></button></td>
+                  <td>{{student.getKarma()}}</td>
                 {% endfor %}
                 </tr>
               </tbody>

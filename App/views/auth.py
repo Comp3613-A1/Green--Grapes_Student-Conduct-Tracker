@@ -2,6 +2,7 @@ from flask import Blueprint, render_template, jsonify, request, send_from_direct
 from flask_jwt_extended import jwt_required, current_user as jwt_current_user
 from flask_login import login_required, login_user, current_user, logout_user
 from App.models import staff, User, Admin
+from App.controllers import user
 from datetime import datetime, timedelta
 from App.models.staff import Staff
 from App.database import db
@@ -33,13 +34,14 @@ def login_action():
         return redirect('/staffHome')  
     else:
         return 'wrong email or password given', 401
+    '''
     user = login(data['email'], data['password'])
     if user:
         session['logged_in'] = True
         token = jwt_authenticate(data['email'], data['password'])
         return redirect('/staffHome')
     #existing_staffuser = staff.query.filter((staff.email == data['email']) & (staff.password == data['password'] )).first()
-    #if existing_staffuser:
+    #if existing_staffuser:'''
     '''email = data.get('email')
     password = data.get('password')
     staffuser = login(data['email'], data['password'])
@@ -51,6 +53,23 @@ def login_action():
     #email = data.get('email')
     #return 'bad username or password given', 401
 
+@auth_views.route('/adminlogin', methods=['POST'])
+def adminlogin_action():
+    data = request.form
+    #staffuser = login(data['email'], data['password'])
+    email = data['email']
+    password = data['password']
+    existing_user = Admin.query.filter((Staff.email == email)).first()
+    if existing_user:
+        return redirect('/adminHome')  
+    else:
+        return 'wrong email or password given', 401
+    '''user = login(data['email'], data['password'])
+    if user:
+        session['logged_in'] = True
+        token = jwt_authenticate(data['email'], data['password'])
+        return redirect('/staffHome')'''
+
 @auth_views.route('/signupstaff', methods=['POST'])
 def signup_staff_action():
     data = request.form
@@ -59,13 +78,13 @@ def signup_staff_action():
     teachingExperience = data['teachingExperience']
     email = data['email']
     password = data['password']
-    id= 1
+    staffID= 1
     existing_user = Admin.query.filter((Staff.email == email)).first()
 
     if existing_user:
         return jsonify({"error":"email already taken"}), 409
 
-    new_user = Admin.addStaff(id=id, firstname=firstname, lastname=lastname, email=email,teachingExperience= teachingExperience, password=password)
+    new_user = user.create_staff(Admin, staffID=staffID, firstname=firstname, lastname=lastname, email=email,teachingExperience= teachingExperience, password=password)
 
     db.session.add(new_user)
     db.session.commit()
@@ -76,10 +95,10 @@ def signup_admin_action():
     data = request.form
     firstname = data['firstname']
     lastname = data['lastname']
-    teachingExperience = "none"
+    teachingExperience = data['lastname']
     email = data['email']
     password = data['password']
-    id= 1
+    id=data['id']
     existing_user = Admin.query.filter((Staff.email == email)).first()
 
     if existing_user:
