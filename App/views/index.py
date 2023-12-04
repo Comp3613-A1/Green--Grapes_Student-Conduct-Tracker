@@ -47,7 +47,7 @@ def init():
       db.session.add(student)
       db.session.commit()
 
-  return jsonify(message='db initialized!')
+  return jsonify(message='db initialized!'),200
 
 @index_views.route('/staffLogin', methods = ['GET'])
 def staffLoginPage():
