@@ -13,8 +13,8 @@ def get_review(reviewID):
 def get_reviews_by_staff(staffID):
     return db.session.query(Review).filter_by(reviewerID=staffID).all()
 
-def create_review(reviewID, studentID, is_positive, comment):
-    reviewer = Staff.query.get(reviewID)
+'''def create_review( studentID, is_positive, comment):
+    reviewer = Staff.query.get(2)
     student = Student.query.get(studentID)
     if reviewer and student:
         new_review = Review(reviewer=reviewer, student=student, isPositive=is_positive, comment=comment)
@@ -25,13 +25,13 @@ def create_review(reviewID, studentID, is_positive, comment):
         if is_positive==None:
             new_review.downvotes += 0
             new_review.upvotes += 0
-        student.reviews.append(new_review)
+        #student.reviews.append(new_review)
         db.session.add(new_review)
         db.session.commit()
 
         return new_review 
     else:
-        return None
+        return None'''
 
 
 def edit_review(review, staff, is_positive, comment):

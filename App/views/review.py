@@ -27,6 +27,7 @@ def list_reviews():
 
 @review_views.route('/addreview', methods=['POST'])
 def addReview_action():
+    #return get_all_staff_json()
     data = request.form
     studentID= data['studentID']
     firstname= data['firstname']
@@ -34,26 +35,19 @@ def addReview_action():
     reviewStaff=data['reviewer']
     review= data['review']
     reviewID=2
-    #firstname = request.args.get('firstname')
-    
-    #if current_user.is_authenticated:
-       # reviewer_id = None #current_user.ID  
-    existing_staff=Staff.query.filter((Staff.firstname==reviewStaff)|(Staff.lastname==reviewStaff)).first()
+    is_positive=True
+    existing_staff=Staff.query.filter((Staff.firstname==reviewStaff)|(Staff.lastname==reviewStaff)|(Staff.ID==reviewStaff)).first()
     existing_student = Student.query.filter(Student.ID==studentID).first()
+    staffID=existing_staff.ID 
+    if existing_staff==False:
+        return 'staff id, firstname or lastname does not exist'
     if existing_student:
         existing_student.comment = review
-        #if existing_staff:
-            #new_review = create_review(reviewer_id=existing_staff.ID, studentID=existing_student.ID, is_positive=None, comment=existing_student.comment)
-        #else:
-
-        new_review = create_review(reviewID=reviewID, studentID=studentID, is_positive=None, comment=review)
-
-        #db.session.add(new_review)
-        #db.session.commit()
-    #if new_review:
-        return jsonify({'review': new_review.comment})
-        allreviews=new_review.to_json()
-        #allreviews.append(new_review.to_json())
+        new_review = create_review(staffID=staffID, studentID=studentID, is_positive=is_positive, comment=review)
+        db.session.add(new_review)
+        db.session.commit()
+    if new_review:
+        allreviews=get_all_reviews_json()
         return jsonify({
             'message': 'Review added for the student!',
             'text': allreviews,
