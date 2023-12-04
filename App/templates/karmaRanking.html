@@ -22,9 +22,11 @@
       <div class = "student-info">
         
         <div class="inputbox" id = "search-student">
+          <form  method="GET" action="/karmaRanking/search" >
           <ion-icon name="search-outline"></ion-icon>
-          <input type="text">
-          <label for="">Search for Student</label>
+          <input name= "entered"type="text">
+          <label for="entered">Search for Student by First Name, Last Name or ID</label>
+          </form>
         </div>
 
         <!--select and option tags refuse to render-->
@@ -41,7 +43,7 @@
       </div>
             
       <main class="container" >
-         <form  method="POST" action="/karmaRanking" style="margin-top:40px;justify-content: center;align-items: center;display: flex">
+         <form  method="GET" action="/karmaRanking" style="margin-top:40px;justify-content: center;align-items: center;display: flex">
             <table>
               <thead>
                 <th>Student ID</th><th>First Name</th><th>Last Name</th><th>Karma Score</th>
