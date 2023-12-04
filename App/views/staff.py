@@ -1,6 +1,6 @@
 import random
 import string
-from flask import Blueprint, request, jsonify
+from flask import Blueprint, request, jsonify,url_for,redirect,render_template
 from App.controllers import Student, Staff
 from App.controllers.user import get_staff, get_student
 from App.database import db
@@ -49,17 +49,38 @@ def create_review_action(student_id):
         return jsonify(review.to_json()), 201
     return 'Failed to create review', 400
 
-@staff_views.route('/searchStudent/search/<string:search_term>', methods=['GET'])
-@jwt_required()
-def search_students(search_term):
-  if jwt_current_user and isinstance(jwt_current_user, Staff): 
-    students = search_students_searchTerm(jwt_current_user, search_term)
-    if students:
-      return jsonify([student for student in students]), 200
-    else:
-      return jsonify({"message": f"No students found with search term {search_term}"}), 204
+@staff_views.route('/users', methods=['GET'])
+def get_user_page(studentID):
+    existing_student = Student.query.filter((Student.ID == studentID)).first()
+    return render_template('searchStudent.html', existing_student=existing_student)
+
+@staff_views.route('/searchStudent/search', methods=['GET'])
+def search_students():
+  entered = request.args.get('entered')
+  if entered:
+      existing_student = Student.query.filter((Student.firstname == entered) |(Student.lastname == entered) |(Student.ID == entered)).first()
+      if existing_student:
+          #return get_user_page(existing_student.ID)
+          student_details = existing_student.to_json()
+          return jsonify(student_details)
+          #return render_template('searchStudent.html',student=student_details)
+      else:
+          return 'no_student_found'
   else:
-    return jsonify({"message": "You are not authorized to perform this action"}), 401
+      return "No search query entered."
+
+@staff_views.route('/reviewlist', methods=['GET'])
+def get_reviews():
+
+  #return redirect('/')
+  #if jwt_current_user and isinstance(jwt_current_user, Staff): 
+  '''students = search_students_searchTerm( search_term)/<string:search_term>
+  if students:
+    return jsonify([student for student in students]), 200
+  else:
+    return jsonify({"message": f"No students found with search term {search_term}"}), 204
+  #else:
+    #return jsonify({"message": "You are not authorized to perform this action"}), 401'''
 
 @staff_views.route('/rankings', methods=['GET'])
 @jwt_required()
