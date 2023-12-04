@@ -17,33 +17,33 @@
 <section>
     <div class="generic-form-box" id = "add-student">
       <div class="form-value" >
-        <form action="">
+        <form method="POST" action="/addStudent" >
           
           <h2>Add Student</h2>
 
           <div class="row">
-            <label for="">Student ID</label>
-            <input type="text" required>
+            <label for="studentID">Student ID</label>
+            <input name="studentID" type="text" required>
           </div>
   
           <div class="row">
-            <label for="">First Name</label>
-            <input type="text" required>
+            <label for="firstname">First Name</label>
+            <input name="firstname" type="text" required>
           </div>
 
           <div class="row">
-            <label for="">Last Name</label>
-            <input type="text" required>
+            <label for="lastname">Last Name</label>
+            <input name="lastname" type="text" required>
           </div>
 
           <div class="row">
-            <label for="">Contact</label>
-            <input type="text" required>
+            <label for="contact">Contact</label>
+            <input name="contact" type="text" required>
           </div>
   
           <div class="row">
-            <label for="">Year of Study</label>
-            <input type="date" required>
+            <label for="yearOfStudy">Year of Study</label>
+            <input name="yearOfStudy" type="date" required>
           </div>
 
           <button>Save</button>

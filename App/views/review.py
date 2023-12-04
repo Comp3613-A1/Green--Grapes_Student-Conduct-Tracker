@@ -25,6 +25,9 @@ def list_reviews():
     reviews = get_reviews()
     return jsonify([review.to_json() for review in reviews]), 200
 
+#@review_views.route('/addreview', methods=['GET'])
+
+
 # Route to view a specific review and vote on it
 @review_views.route('/review/<int:review_id>', methods=['GET',])
 def view_review(review_id):

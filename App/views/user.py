@@ -1,4 +1,4 @@
-from flask import Blueprint, jsonify, render_template, request, send_from_directory
+from flask import Blueprint, jsonify, redirect, render_template, request, send_from_directory
 from flask_jwt_extended import current_user as jwt_current_user
 from flask_jwt_extended import jwt_required
 from flask_login import current_user
@@ -14,6 +14,12 @@ def get_student_page():
     students = get_all_students()
     return render_template('searchStudent.html', students=students)
 
+@user_views.route('/logReview', methods=['GET'])
+def get_students_review_page():
+    students = get_all_students_json()
+    return render_template('logReview.html', students=students)
+
+
 # Route to get all users
 @user_views.route('/api/users', methods=['GET'])
 def get_users_action():
@@ -25,7 +31,54 @@ def static_user_page():
   return send_from_directory('static', 'static-user.html')
 
 # Route to create a new student
-@user_views.route("/user/create_student", methods=["POST"])
+@user_views.route('/addStudent', methods=['POST'])
+def addStudent_action():
+    data = request.form  
+    studentID = data['studentID']
+    firstname= data['firstname']
+    lastname= data['lastname']
+    password = data['lastname']
+    contact= data['contact']
+    studentType =data['lastname']
+    yearOfStudy = data['yearOfStudy']
+
+    new_student = create_student(Admin,studentID=studentID, firstname=firstname, lastname=lastname,password=password, contact=contact, studentType=studentType, yearofStudy=yearOfStudy)
+    db.session.add(new_student)
+    db.session.commit()
+    return redirect('/searchStudent')
+    students = get_all_students_json() 
+    return jsonify({
+        'message': 'Student successfully created!',
+        'students': students
+    })
+
+@user_views.route('/studentUpdates', methods=['POST'])
+def update_Student_action():
+  data = request.form  
+  studentID = data['studentID']
+  firstname= data['firstname']
+  lastname= data['lastname']
+  password = None
+  contact= data['contact']
+  studentType = None
+  yearOfStudy = data['yearOfStudy']
+  existing_student = Student.query.filter(Student.ID==studentID).first()
+  if existing_student:
+      existing_student.firstname = firstname
+      existing_student.lastname = lastname
+      existing_student.contact = contact
+      existing_student.yearOfStudy = yearOfStudy
+      updated_student = get_all_students_json()
+      return jsonify({
+          'message': 'Student successfully updated!',
+          'student': updated_student
+      })
+  else:
+      return jsonify({'message': 'Student not found!'})  
+  return redirect('/searchStudent')
+
+
+@user_views.route('/user/create_student', methods=['POST'])
 @jwt_required()
 def create_student_action():
     data = request.json #get data from post request
@@ -55,7 +108,7 @@ def create_student_action():
 
 
 # Route to create a new staff member
-@user_views.route("/user/create_staff", methods=["POST"])
+@user_views.route("/user/create_staff", methods=['POST'])
 @jwt_required()
 def create_staff_action():
   #get data from the post request body 
