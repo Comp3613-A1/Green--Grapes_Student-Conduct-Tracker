@@ -16,8 +16,8 @@ def get_staff_reviews(staff_id):
     if staff:
         return staff.getReviewsByStaff(staff)
 
-def search_students_searchTerm(staff, searchTerm):
-    students = staff.searchStudent(searchTerm)
+def search_students_searchTerm(searchTerm):
+    students = Staff.searchStudent(searchTerm)
     if students:
       return students
     return None
