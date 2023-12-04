@@ -27,22 +27,31 @@ def list_reviews():
 
 @review_views.route('/addreview', methods=['POST'])
 def addReview_action():
-    redirect('/')
-    data = request.form  
-    studentID = data['studentID']
+    data = request.form
+    studentID= data['studentID']
     firstname= data['firstname']
     lastname= data['lastname']
-    review= data['review']
+    comment=data['review']
+    #reviewer= data['reviewer']
+    #if current_user.is_authenticated:
+       # reviewer_id = None #current_user.ID  
     existing_student = Student.query.filter(Student.ID==studentID).first()
     if existing_student:
-        existing_student.review = review
-        updated_student = get_reviews()
+        existing_student.review = comment
+        new_review = create_review(None, studentID, None, comment)
+        #db.session.add(new_review)
+        #db.session.commit()
+    #if new_review:
+        allreviews=get_all_reviews_json()
+        allreviews.append(new_review.to_json())
         return jsonify({
-            'message': 'Student successfully updated!',
-            'student': updated_student
-        })
+            'message': 'Review added for the student!',
+            'text': allreviews,
+            'studentID': studentID  
+            })
     else:
-        return jsonify({'message': 'Student not found!'})
+        return jsonify({'message': 'Failed to add review. Student not found!'})
+    
 
 
 # Route to view a specific review and vote on it

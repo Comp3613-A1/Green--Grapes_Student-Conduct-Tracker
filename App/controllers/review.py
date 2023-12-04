@@ -13,6 +13,24 @@ def get_review(reviewID):
 def get_reviews_by_staff(staffID):
     return db.session.query(Review).filter_by(reviewerID=staffID).all()
 
+def create_review(reviewer_id, student_id, is_positive, comment):
+    reviewer = Staff.query.get(reviewer_id)
+    student = Student.query.get(student_id)
+
+    if reviewer and student:
+        new_review = Review(reviewer=reviewer, student=student, isPositive=is_positive, comment=comment)
+        if is_positive:
+            new_review.upvotes += 1
+        else:
+            new_review.downvotes += 1
+        student.reviews.append(new_review)
+        db.session.add(new_review)
+        db.session.commit()
+
+        return new_review 
+    else:
+        return None
+
 
 def edit_review(review, staff, is_positive, comment):
     if review.reviewer == staff:
@@ -103,3 +121,24 @@ def upvoteReview(reviewID, staff):
         student_karma.updateRank()
 
     return review.upvotes
+
+def get_all_reviews_json():
+    all_reviews = db.session.query(Review).all()
+    reviews_json = []
+
+    for review in all_reviews:
+        review_json = {
+            "reviewID": review.ID,
+            "reviewer": f"{review.reviewer.firstname} {review.reviewer.lastname}",
+            "studentID": review.student.ID,
+            "studentName": f"{review.student.firstname} {review.student.lastname}",
+            "created": review.created.strftime("%d-%m-%Y %H:%M"),
+            "isPositive": review.isPositive,
+            "upvotes": review.upvotes,
+            "downvotes": review.downvotes,
+            "comment": review.comment
+        }
+        reviews_json.append(review_json)
+
+    return reviews_json
+
