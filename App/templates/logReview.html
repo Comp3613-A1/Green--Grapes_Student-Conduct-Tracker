@@ -16,56 +16,48 @@
 {% block content %}
 <section>
   
-    <div class="generic-form-box" style="margin-top: -15px;" >
+    <div class="generic-form-box" style="margin-top: -30px;" >
         <div class="form-value">
-            <form method="GET" action="/logReview" id = "log-student">
-                <div class = "student-info">
+            <form method="POST" action="/addreview" id = "log-student">
+                <div class = "student-log-info">
                     <div>
                         <h2>Log Review</h2>
                     </div>
-                 
+                    <div class="row">
+                        <label for="studentID">Student ID</label>
+                        <input name="studentID" type="text" required>
+                    </div>
                 
-                        <div class="row">
-                          <label for="">First Name</label>
-                          <input type="text" required>
-                        </div>
-              
-                        <div class="row">
-                          <label for="">Last Name</label>
-                          <input type="text" required>
-                        </div>
+                    <div class="row">
+                        <label for="firstname">First Name</label>
+                        <input name="firstname" type="text" required>
+                    </div>
+            
+                    <div class="row">
+                        <label for="lastname">Last Name</label>
+                        <input name="lastname" type="text" required>
+                    </div>
 
-                        <div class="row">
-                            <label>Date Created: </label>
-                            <input type = "date"></input>
-                        </div>
+                    <div class="row">
+                        <label>Date Created: </label>
+                        <input type = "date"></input>
+                    </div>
 
-                        <div class="row">
-                            <label>Logged By: </label>
-                            <input type = "text"></input>
-                        </div>
+                    <div class="row">
+                        <label for="reviewer">Logged By: </label>
+                        <input name="reviewer" type = "text"></input>
+                    </div>
                         
-                    </form>
-
-                    <form>
-                        <div class="textarea-format">
-                            <div class="student-log-info">
-                                <div>
-                                    <h4>Review Description: </h4>
-                                </div>
-                                <div >
-                                    <textarea name="review" id="text" ></textarea>
-                                </div>
-                            </div>
-                            
-                        </div>
-                    </form>
-                   
+                    <div class="row">
+                        <label for="review">Review Description:</label>
+                        <input name="review" type="text" ></input>
+                    </div>
+ 
                 </div>
 
-                <div class ="button-format" style="justify-content: right; margin-right: 90px; gap: 2em;">
+                <div class ="button-format" style="justify-content: right; gap: 2em;">
                     <button class = "update-button">Create Review</button>
-                  </div>
+                </div>
 
             </form>
         </div>
