@@ -1,6 +1,6 @@
 {% extends "layout.html" %}
 {% block title %}Student Conduct Tracker{% endblock %}
-{% block page %}Search Student{% endblock %}
+{% block page %}Staff{% endblock %}
 
 {{ super() }}
 
@@ -14,14 +14,14 @@
 <section>
   
     <div class="generic-form-box">
-      
+      <h2>Search Student</h2>
       <div class = "student-info">
         <form  method="GET" action="/searchStudent/search/<string:search_term>" >
-        <div class="inputbox" id = "search-student">
-          <ion-icon name="search-outline"></ion-icon>
-          <input type="text">
-          <label for="">Search for Student</label>
-        </div>
+          <div class="inputbox" id = "search-student">
+            <ion-icon name="search-outline"></ion-icon>
+            <input type="text">
+            <label for="">Search for Student</label>
+          </div>
         </form>
 
         <!--select and option tags refuse to render-->
@@ -33,9 +33,12 @@
             <a href="">Best Review</a>
             <a href="">Worst Review</a>
           </div>
+        </div>
 
-         <main class="container" >
-           <form  method="POST" action="/searchStudent" style="margin-top:40px;justify-content: center;align-items: center;display: flex">
+      </div>
+            
+      <main class="container" >
+         <form  method="POST" action="/searchStudent" style="margin-top:20px;justify-content: center;align-items: center;display: flex">
             <table>
               
               <thead>
@@ -47,16 +50,17 @@
                   <td>{{student.ID}}</td>
                   <td>{{student.firstname}}</td>
                   <td>{{student.lastname}}</td>
-                  <td>{{student.reviews}}</td>
+                  <td><button><a href="/studentInformation" style="color:#fff">Reviews</a></button></td>
                 {% endfor %}
                 </tr>
               </tbody>
             </table>
           </form>
-         </main>
-
-      </div>
-           
+       </main>
+            
+        
+    </div>
+    
 </section>
 <script type="module" src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.esm.js"></script>
 <script nomodule src="https://unpkg.com/ionicons@7.1.0/dist/ionicons/ionicons.js"></script>

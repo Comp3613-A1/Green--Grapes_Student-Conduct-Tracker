@@ -4,6 +4,12 @@
 
 {{ super() }}
 
+{% block link %}
+    <ul id = "nav-mobile" class = "left">
+        <li><a href = "/staffHome">Back</a></li>
+    </ul>
+{% endblock %}
+
 {% block content %}
 <section>
     <div class="generic-form-box">
