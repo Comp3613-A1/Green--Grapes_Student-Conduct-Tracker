@@ -71,7 +71,7 @@ class Staff(User):
 
 #get student karma rankings from highest rank to lowest based on scores
 
-  def getStudentRankings(self):
+  def getStudentRankings(staff):
     students = db.session.query(Student, Karma)\
                 .join(Karma, Student.karmaID == Karma.karmaID)\
                 .order_by(Karma.rank.asc())\
