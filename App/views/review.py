@@ -31,18 +31,28 @@ def addReview_action():
     studentID= data['studentID']
     firstname= data['firstname']
     lastname= data['lastname']
-    comment=data['review']
-    #reviewer= data['reviewer']
+    reviewStaff=data['reviewer']
+    review= data['review']
+    reviewID=2
+    #firstname = request.args.get('firstname')
+    
     #if current_user.is_authenticated:
        # reviewer_id = None #current_user.ID  
+    existing_staff=Staff.query.filter((Staff.firstname==reviewStaff)|(Staff.lastname==reviewStaff)).first()
     existing_student = Student.query.filter(Student.ID==studentID).first()
     if existing_student:
-        existing_student.review = comment
-        new_review = create_review(None, studentID, None, comment)
+        existing_student.comment = review
+        #if existing_staff:
+            #new_review = create_review(reviewer_id=existing_staff.ID, studentID=existing_student.ID, is_positive=None, comment=existing_student.comment)
+        #else:
+
+        new_review = create_review(reviewID=reviewID, studentID=studentID, is_positive=None, comment=review)
+
         #db.session.add(new_review)
         #db.session.commit()
     #if new_review:
-        allreviews=get_all_reviews_json()
+        return jsonify({'review': new_review.comment})
+        allreviews=new_review.to_json()
         #allreviews.append(new_review.to_json())
         return jsonify({
             'message': 'Review added for the student!',

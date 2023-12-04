@@ -1,4 +1,4 @@
-from App.models import Review, Karma, Student
+from App.models import Review, Karma, Student,Staff
 from App.database import db
 
 def get_reviews(): 
@@ -13,16 +13,18 @@ def get_review(reviewID):
 def get_reviews_by_staff(staffID):
     return db.session.query(Review).filter_by(reviewerID=staffID).all()
 
-def create_review(reviewer_id, student_id, is_positive, comment):
-    reviewer = Staff.query.get(reviewer_id)
-    student = Student.query.get(student_id)
-
+def create_review(reviewID, studentID, is_positive, comment):
+    reviewer = Staff.query.get(reviewID)
+    student = Student.query.get(studentID)
     if reviewer and student:
         new_review = Review(reviewer=reviewer, student=student, isPositive=is_positive, comment=comment)
         if is_positive:
             new_review.upvotes += 1
         else:
             new_review.downvotes += 1
+        if is_positive==None:
+            new_review.downvotes += 0
+            new_review.upvotes += 0
         student.reviews.append(new_review)
         db.session.add(new_review)
         db.session.commit()
