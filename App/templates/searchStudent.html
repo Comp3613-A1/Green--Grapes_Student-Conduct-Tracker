@@ -16,11 +16,11 @@
     <div class="generic-form-box">
       <h2>Search Student</h2>
       <div class = "student-info">
-        <form  method="GET" action="/searchStudent/search/<string:search_term>" >
+        <form  method="GET" action="/searchStudent/search" >
           <div class="inputbox" id = "search-student">
             <ion-icon name="search-outline"></ion-icon>
-            <input type="text">
-            <label for="">Search for Student</label>
+            <input name= "entered"type="text">
+            <label for="entered">Search for Student by First Name, Last Name or ID</label>
           </div>
         </form>
 
@@ -38,7 +38,7 @@
       </div>
             
       <main class="container" >
-         <form  method="POST" action="/searchStudent" style="margin-top:20px;justify-content: center;align-items: center;display: flex">
+         <form  method="GET" action="/searchStudent" style="margin-top:20px;justify-content: center;align-items: center;display: flex">
             <table>
               
               <thead>
@@ -50,7 +50,9 @@
                   <td>{{student.ID}}</td>
                   <td>{{student.firstname}}</td>
                   <td>{{student.lastname}}</td>
-                  <td><button><a href="/studentInformation" style="color:#fff">Reviews</a></button></td>
+                  <td><button>
+                    <form method="GET" action="/reviews">
+                    <a href="/studentInformation" style="color:#fff">Reviews</a></form></button></td>
                 {% endfor %}
                 </tr>
               </tbody>

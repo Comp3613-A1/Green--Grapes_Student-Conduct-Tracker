@@ -1,9 +1,9 @@
 from flask import Blueprint, jsonify, redirect, render_template, request, abort, url_for
 from flask_jwt_extended import jwt_required, current_user as jwt_current_user
 from flask_login import current_user
-from App.controllers import Review, Staff
-from App.controllers.user import get_staff
-from App.controllers.student import search_student
+from App.controllers import *
+#from App.controllers.user import get_staff
+#from App.controllers.student import search_student
 
 from App.controllers.review import (
     get_reviews_by_staff,
@@ -25,7 +25,37 @@ def list_reviews():
     reviews = get_reviews()
     return jsonify([review.to_json() for review in reviews]), 200
 
-#@review_views.route('/addreview', methods=['GET'])
+@review_views.route('/addreview', methods=['POST'])
+def addReview_action():
+    #return get_all_staff_json()
+    data = request.form
+    studentID= data['studentID']
+    firstname= data['firstname']
+    lastname= data['lastname']
+    reviewStaff=data['reviewer']
+    review= data['review']
+    reviewID=2
+    is_positive=True
+    existing_staff=Staff.query.filter((Staff.firstname==reviewStaff)|(Staff.lastname==reviewStaff)|(Staff.ID==reviewStaff)).first()
+    existing_student = Student.query.filter(Student.ID==studentID).first()
+    staffID=existing_staff.ID 
+    if existing_staff==False:
+        return 'staff id, firstname or lastname does not exist'
+    if existing_student:
+        existing_student.comment = review
+        new_review = create_review(staffID=staffID, studentID=studentID, is_positive=is_positive, comment=review)
+        db.session.add(new_review)
+        db.session.commit()
+    if new_review:
+        allreviews=get_all_reviews_json()
+        return jsonify({
+            'message': 'Review added for the student!',
+            'text': allreviews,
+            'studentID': studentID  
+            })
+    else:
+        return jsonify({'message': 'Failed to add review. Student not found!'})
+    
 
 
 # Route to view a specific review and vote on it
