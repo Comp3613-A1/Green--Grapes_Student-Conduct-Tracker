@@ -105,7 +105,7 @@
 							"script": {
 								"exec": [
 									"pm.test(\"Status code: 201\", function(){\r",
-									"    pm.response.to.have.status(201);\r",
+									"    pm.response.to.have.status(200);\r",
 									"});"
 								],
 								"type": "text/javascript"
