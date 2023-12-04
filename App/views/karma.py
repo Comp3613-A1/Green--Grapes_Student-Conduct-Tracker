@@ -26,13 +26,22 @@ def search_students_karma():
   else:
       return "No search query entered."
 
-@karma_views.route('/karmaRanking', methods=['GET'])
-def students_karma():
-    rankings = get_student_rankings(Staff)
+'''@karma_views.route('/karmaRanking', methods=['GET'])
+    def students_karma():
+    #rankings = get_student_rankings(Staff)
     students = get_all_students()
-    return render_template('karmaRanking.html', students=rankings)
+    return render_template('karmaRanking.html', students=students)#rankings)
 
+@karma_views.route("/api/students", methods=['GET'])
+def get_student_action():
+    students = get_student()
+    if students:
+       return jsonify([student.to_json() for student in students]), 200
+    else:
+        return "No students found", 404
+'''
 @karma_views.route("/karma/update_rankings", methods=["POST"])
 def update_karma_rankings_route():
     update_student_karma_rankings()
     return "Karma rankings updated", 200
+

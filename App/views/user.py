@@ -14,6 +14,11 @@ def get_student_page():
     students = get_all_students()
     return render_template('searchStudent.html', students=students)
 
+@user_views.route('/karmaRanking', methods=['GET'])
+def students_karma():
+    #rankings = get_student_rankings(Staff)
+    students = get_all_students()
+    return render_template('karmaRanking.html', students=students)#rankings)
 
 # Route to get all users
 @user_views.route('/api/users', methods=['GET'])
