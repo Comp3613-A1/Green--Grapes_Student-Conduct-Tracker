@@ -16,13 +16,14 @@
     
         <div class = "student-info">
             <div id = "student-information">
-                <h4>Student Name</h4>
-                <h5>Student ID</h5>
+                
+                <h4>{{student_firstname}}{{student_lastname}}</h4>
+                <h5>{{student_ID}}</h5>
             </div>
     
             <div id ="karma-info">
-                <h4>Karma</h4>
-                <h5>Score</h5>
+                <h4>Karma Score</h4>
+                <h5>{{student_karma}}</h5>
             </div>
         </div>
 
@@ -35,21 +36,19 @@
                         <th></th>
                         <th></th>
                     </thead>
-                    <tr>
-                        <td>Review information</td>
-                        <td style="width: 40px"><button>Agree</button></td>
-                        <td style="width: 40px"><button>Disagree</button></td>
-                    </tr>
-                    <tr>
-                        <td>Review information</td>
-                        <td style="width: 40px"><button>Agree</button></td>
-                        <td style="width: 40px"><button>Disagree</button></td>
-                    </tr>
-                    <tr>
-                        <td>Review information</td>
-                        <td style="width: 40px"><button>Agree</button></td>
-                        <td style="width: 40px"><button>Disagree</button></td>
-                    </tr>
+                    <tbody>
+                        {% for review in reviews %}
+                            <tr>
+                                <td>{{review.getReview()}}</td>
+                                
+                                <td style="width: 40px"><button> <form method="GET" action="/reviews">
+                                    <a href="/studentInformation" style="color:#fff">Agree</a></form></button></td>
+                                
+                                <td style="width: 40px"><button><form method="GET" action="/reviews">
+                                    <a href="/studentInformation" style="color:#fff">Disagree</a></form></button></td>
+                                
+                        {% endfor %}
+                    </tbody>
                     
                 </table>
             </div>

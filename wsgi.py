@@ -20,15 +20,14 @@ def initialize():
   db.drop_all()
   db.create_all()
   admin= create_user('bob', 'boblast' , 'bobpass')
-  for ID in  range(2, 50): 
-    staff= create_staff(admin, 
+  for ID in  range(1, 50): 
+    staff= create_staff(admin, str(ID),
           randomname.get_name(), 
           randomname.get_name(), 
           randomname.get_name(), 
-          str(ID), 
-          randomname.get_name() + '@schooling.com', 
-          str(random.randint(1, 15))
-      )
+          randomname.get_name() + str(ID) + '@schooling.com',
+          randomname.get_name(),
+          )
     db.session.add(staff)
     db.session.commit()
 

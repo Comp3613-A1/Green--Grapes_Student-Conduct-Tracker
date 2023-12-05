@@ -84,7 +84,7 @@ def signup_staff_action():
     if existing_user:
         return jsonify({"error":"Admin already exists"}), 409
 
-    new_user = user.create_staff(Admin, staffID=staffID, firstname=firstname, lastname=lastname, email=email,teachingExperience= teachingExperience, password=password)
+    new_user = user.create_staff(Admin, ID=staffID, firstname=firstname, lastname=lastname, email=email,teachingExperience= teachingExperience, password=password)
 
     db.session.add(new_user)
     db.session.commit()
