@@ -8,8 +8,8 @@ def create_student(admin,studentID, firstname, lastname,password, contact, stude
 		return None
 
 
-def create_staff(staffID, firstname, lastname, password, email, teachingExperience):
-		new_staff = Admin.addStaff(staffID=staffID, firstname=firstname, lastname=lastname, password=password, email=email, teachingExperience=teachingExperience)
+def create_staff(admin,ID, firstname, lastname, password, email, teachingExperience):
+		new_staff = Admin.addStaff(id=ID, firstname=firstname, lastname=lastname, password=password, email=email, teachingExperience=teachingExperience)
 		if new_staff:
 			return new_staff
 		return None
