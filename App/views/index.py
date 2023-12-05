@@ -3,7 +3,7 @@ from flask import Blueprint, render_template, jsonify
 from App.models import db
 from App.controllers import create_user, create_staff, create_student
 import randomname
-
+from App.controllers import Student
 from App.models.admin import Admin
 
 index_views = Blueprint('index_views', __name__, template_folder='../templates')
@@ -12,6 +12,15 @@ index_views = Blueprint('index_views', __name__, template_folder='../templates')
 @index_views.route('/', methods=['GET'])
 def index_page():
     return render_template('index.html')
+
+@index_views.route('/searchStudent/<entered>', methods = ['GET'])
+def studentInformationSearchPage(entered):
+    existing_user= Student.query.filter((Student.ID==entered)).first()
+    if existing_user:
+        student_firstname =existing_user.firstname
+        student_lastname =existing_user.lastname
+        student_ID =existing_user.ID
+    return render_template('studentInformation.html',student_firstname= student_firstname,student_lastname=student_lastname,student_ID = student_ID)
 
 def generate_random_contact_number():
     return f"0000-{random.randint(100, 999)}-{random.randint(1000, 9999)}"

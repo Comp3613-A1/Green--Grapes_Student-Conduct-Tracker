@@ -37,28 +37,28 @@
 
       </div>
             
-      <main class="container" >
-         <form  method="GET" action="/searchStudent" style="margin-top:20px;justify-content: center;align-items: center;display: flex">
-            <table>
-              
-              <thead>
+      <main class="container">
+        <table>
+            <thead>
                 <th>Student ID</th><th>First Name</th><th>Last Name</th><th>Review</th>
-              </thead>
-              <tbody>
+            </thead>
+            <tbody>
                 {% for student in students %}
                 <tr>
-                  <td>{{student.ID}}</td>
-                  <td>{{student.firstname}}</td>
-                  <td>{{student.lastname}}</td>
-                  <td><button>
-                    <form method="GET" action="/reviews">
-                    <a href="/studentInformation" style="color:#fff">Reviews</a></form></button></td>
-                {% endfor %}
+                    <td>{{ student.ID }}</td>
+                    <td>{{ student.firstname }}</td>
+                    <td>{{ student.lastname }}</td>
+                    <td>
+                        <form method="GET" action="/searchStudent/{{ student.ID }}">
+                            <button type="submit" name="entered">Reviews</button>
+                        </form>
+                    </td>
                 </tr>
-              </tbody>
-            </table>
-          </form>
-       </main>
+                {% endfor %}
+            </tbody>
+        </table>
+    </main>
+    
             
         
     </div>
