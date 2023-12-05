@@ -24,41 +24,31 @@
           </div>
         </form>
 
-        <!--select and option tags refuse to render-->
-        <div class="inputdropbox">
-          <button>Filter By  <ion-icon name="caret-down-outline"></ion-icon></ion-icon></button>
-          <div class="drop-content"> 
-            <a href="">Student ID</a>
-            <a href="">Student Name</a>
-            <a href="">Best Review</a>
-            <a href="">Worst Review</a>
-          </div>
-        </div>
 
       </div>
             
-      <main class="container">
-        <table>
-            <thead>
-                <th>Student ID</th><th>First Name</th><th>Last Name</th><th>Review</th>
-            </thead>
-            <tbody>
-                {% for student in students %}
-                <tr>
-                    <td>{{ student.ID }}</td>
-                    <td>{{ student.firstname }}</td>
-                    <td>{{ student.lastname }}</td>
-                    <td>
-                        <form method="GET" action="/searchStudent/{{ student.ID }}">
-                            <button type="submit" name="entered">Reviews</button>
-                        </form>
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-    </main>
-    
+<main class="container">
+    <table>
+        <thead>
+            <th>Student ID</th><th>First Name</th><th>Last Name</th><th>Review</th>
+        </thead>
+        <tbody>
+            {% for student in students %}
+            <tr>
+                <td>{{ student.ID }}</td>
+                <td>{{ student.firstname }}</td>
+                <td>{{ student.lastname }}</td>
+                <td>
+                    <form method="GET" action="/searchStudent/{{ student.ID }}">
+                        <button type="submit" name="entered">Reviews</button>
+                    </form>
+                </td>
+            </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+</main>
+
             
         
     </div>
