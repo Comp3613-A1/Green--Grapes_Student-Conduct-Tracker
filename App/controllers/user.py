@@ -1,7 +1,6 @@
 from App.models import Staff, Student, Admin
 from App.database import db
 
-
 def create_student(admin,studentID, firstname, lastname,password, contact, studentType, yearofStudy):
 		new_student = Admin.addStudent(admin, studentID, firstname=firstname, lastname=lastname, password=password, contact=contact, studentType=studentType, yearofStudy=yearofStudy)
 		if new_student:
@@ -14,7 +13,6 @@ def create_staff(staffID, firstname, lastname, password, email, teachingExperien
 		if new_staff:
 			return new_staff
 		return None
-
 
 def create_user(firstname, lastname, password):
     new_admin = Admin(firstname=firstname, lastname=lastname, password=password)
@@ -87,4 +85,3 @@ def update_student(student, firstname, lastname, password, contact, studentType,
     db.session.add(student)
     db.session.commit()
     return student
-    

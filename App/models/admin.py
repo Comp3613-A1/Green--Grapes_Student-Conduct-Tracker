@@ -22,7 +22,7 @@ class Admin(User):
 		return newStudent 
 
 	# add staff to the database
-	def addStaff(id, firstname, lastname, password, email, teachingExperience):
+	def addStaff(admin, id, firstname, lastname, password, email, teachingExperience):
 		newStaff= Staff(id, firstname, lastname, password, email, teachingExperience)
 			
 		db.session.add(newStaff)
